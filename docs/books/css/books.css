@@ -1,15 +1,30 @@
+/*ширина панели быстрого поиска*/
+.quick-nav-panel {
+  width: 400px; /* Пример: установите фиксированную ширину. Подберите значение, которое вам подходит. */
+  min-width: 400px;
+  max-width: 400px;
+}
+
 /* Стили для сворачиваемого контента */
 .quick-nav-content {
-  max-height: 500px; /* Начальная максимальная высота, отрегулируйте по мере необходимости для размещения всего содержимого */
+  max-height: 500px; /* Достаточно большая высота, чтобы вместить все содержимое */
   overflow: hidden;
-  transition: max-height 0.3s ease-out, opacity 0.3s ease-out; /* Плавный переход */
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out, padding 0.3s ease-out; /* Плавный переход для всех свойств */
   opacity: 1;
 }
 
+.quick-nav-header {
+  width: 100%; /* Заголовок должен занимать 100% ширины своего родителя*/
+}
+
 /* Когда содержимое свернуто */
-.quick-nav-content.collapsed {
+.quick-nav-panel.collapsed .quick-nav-content {
   max-height: 0;
   opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 0; /* Важно: обнуляем горизонтальные отступы */
+  padding-right: 0; /* Важно: обнуляем горизонтальные отступы */
 }
 
 /* Опционально: Стили для поворота иконки кнопки переключения */
