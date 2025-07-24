@@ -1,3 +1,26 @@
+/* Стили для сворачиваемого контента */
+.quick-nav-content {
+  max-height: 500px; /* Начальная максимальная высота, отрегулируйте по мере необходимости для размещения всего содержимого */
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out; /* Плавный переход */
+  opacity: 1;
+}
+
+/* Когда содержимое свернуто */
+.quick-nav-content.collapsed {
+  max-height: 0;
+  opacity: 0;
+}
+
+/* Опционально: Стили для поворота иконки кнопки переключения */
+.quick-nav-toggle svg {
+  transition: transform 0.3s ease;
+}
+
+.quick-nav-toggle.collapsed svg {
+  transform: rotate(45deg); /* Поворачивает знак плюса в 'X' или подобное */
+}
+
 /* Фон страницы */
 .chronicle-bg {
     min-height: 100vh;

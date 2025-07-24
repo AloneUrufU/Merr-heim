@@ -22,20 +22,47 @@ document.addEventListener('DOMContentLoaded', () => {
   const goToPageBtn = document.getElementById('goToPageBtn');
   const pageList = document.getElementById('pageList');
 
-  // Переключение видимости панели
+  // --- ЛОГИКА СВОРАЧИВАНИЯ/РАЗВОРАЧИВАНИЯ ПАНЕЛИ ---
   if (quickNavToggle && quickNavPanel) {
     quickNavToggle.addEventListener('click', () => {
-      quickNavPanel.classList.toggle('collapsed');
-      
-      // Изменяем иконку
-      const svg = quickNavToggle.querySelector('svg');
+      // Переключаем класс 'collapsed' у содержимого панели
+      // Это контролирует CSS-стили для скрытия/показа
+      quickNavPanel.classList.toggle('collapsed'); // <-- Это добавляет/удаляет класс 'collapsed' у всей панели
+
+      // Переключаем класс 'collapsed' у самой кнопки переключения
+      // Это позволит стилизовать иконку кнопки (например, ее поворот)
+      quickNavToggle.classList.toggle('collapsed');
+
+      // Изменяем иконку SVG в зависимости от состояния
+      const svgPath = quickNavToggle.querySelector('svg path');
       if (quickNavPanel.classList.contains('collapsed')) {
-        svg.innerHTML = '<path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" fill="none"/>';
+        // Если панель свернута, показываем иконку "плюс" или "развернуть"
+        svgPath.setAttribute('d', 'M12 5v14M5 12h14'); // Иконка плюса
+        quickNavToggle.setAttribute('aria-label', 'Показать панель');
+        quickNavToggle.setAttribute('aria-expanded', 'false');
       } else {
-        svg.innerHTML = '<path d="M19 13H5v-2h14v2z" fill="currentColor"/>';
+        // Если панель развернута, показываем иконку "минус" или "свернуть"
+        svgPath.setAttribute('d', 'M19 13H5v-2h14v2z'); // Иконка минуса
+        quickNavToggle.setAttribute('aria-label', 'Скрыть панель');
+        quickNavToggle.setAttribute('aria-expanded', 'true');
       }
     });
   }
+
+  // Переключение видимости панели
+  //if (quickNavToggle && quickNavPanel) {
+  //  quickNavToggle.addEventListener('click', () => {
+  //    quickNavPanel.classList.toggle('collapsed');
+  //    
+      // Изменяем иконку
+  //    const svg = quickNavToggle.querySelector('svg');
+  //    if (quickNavPanel.classList.contains('collapsed')) {
+  //      svg.innerHTML = '<path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" fill="none"/>';
+  //    } else {
+  //      svg.innerHTML = '<path d="M19 13H5v-2h14v2z" fill="currentColor"/>';
+  //    }
+  //  });
+  //}
 
   // Анимация "мерцания" пепла
   const ash = document.querySelector('.ash-overlay');
